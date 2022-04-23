@@ -1,12 +1,19 @@
 from fastapi import FastAPI
-from typing import Optional
+import logging
+from transformers import pipeline
+
+logger = logging.getLogger("my-project-logger")
 
 app = FastAPI(docs_url='/docs')
+sentiment_model = pipeline("sentiment-analysis")
+
 
 @app.get("/health")
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/prediction/sentiment/{sentence}")
+def sentiment_prediction(sentence: str):
+    result = sentiment_model(sentence)
+    print(result)
+    return {"label": result[0]['label'], "score": result[0]['score']}
