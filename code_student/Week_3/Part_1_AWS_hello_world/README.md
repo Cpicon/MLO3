@@ -267,7 +267,7 @@ Paste that command in terminal and confirm by type `yes` when prompted about con
 
 Copy and paste the first line to update `yum` (your package manager). We'll also install `git` using the second command.
 ``` bash
-sudo update yum -y
+sudo yum update -y
 ```
 ``` bash
 sudo yum install git -y
