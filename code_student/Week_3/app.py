@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from typing import Optional
-app = FastAPI(docs_url='/')
+
+app = FastAPI(docs_url='/docs')
 
 @app.get("/health")
 def read_root():
